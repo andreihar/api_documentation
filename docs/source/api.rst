@@ -3,7 +3,7 @@ API
 
 I write something
 
-.. autoclass:: Point
+.. autoclass:: lumache.Point
 
 .. autosummary::
    :toctree: generated
