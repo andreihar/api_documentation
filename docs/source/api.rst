@@ -12,15 +12,22 @@ I write something new
    :type latitude: float
    :param longitude: longitude value between -180 to 180.
    :type longitude: float
-   :param elevation: Optional elevation value.
-   :type elevation: float or None
+   :param elevation: Optional elevation value in metres.
+   :type elevation: int or None
 
 
-   .. py:method:: get_point_coordinates():
+   .. py:method:: get_point_coordinates(point):
 
-      Return a list of random ingredients as strings.
+      Return a list of coordinates of the geographic point.
 
-      :param kind: Optional "kind" of ingredients.
-      :type kind: list[str] or None
-      :return: The ingredients list.
-      :rtype: list[str]
+      :param point: Optional "kind" of ingredients.
+      :type kind: Point
+      :return: Coordinates of the geographic point.
+      :rtype: list
+
+      >>> point2d = Point(51.5072, -0.1276)
+      >>> get_point_coordinates(point2d)
+      [51.5072, -0.1276]
+      >>> point3d = Point(51.5072, -0.1276, 25)
+      >>> get_point_coordinates(point3d)
+      [51.5072, -0.1276, 25]
