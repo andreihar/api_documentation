@@ -1,4 +1,4 @@
-Intro
+Usage
 =====
 
 .. _installation:
@@ -6,17 +6,11 @@ Intro
 Installation
 ------------
 
-To use GeoPro, first install it using easy_install or pip:
+To use Lumache, first install it using pip:
 
 .. code-block:: console
 
-   (.venv) $ pip install geopro
-
-.. code-block:: console
-
-   (.venv) $ easy_install geopro
-
-Run "python setup.py install" in the root directory to install it from source.
+   (.venv) $ pip install lumache
 
 Creating recipes
 ----------------
@@ -37,3 +31,4 @@ For example:
 >>> import lumache
 >>> lumache.get_random_ingredients()
 ['shells', 'gorgonzola', 'parsley']
+
