@@ -1,9 +1,9 @@
 API
 ===
 
-I write something
+I write something new
 
-.. autoclass:: lumache.Point
+.. autoclass:: spamfilter.Spamfilter
 
 .. autosummary::
    :toctree: generated
