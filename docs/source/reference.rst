@@ -30,11 +30,13 @@ For example:
 
 Channel
 =======
-.. automodule:: pika.channel
 
 Channel
 -------
-.. autoclass:: Channel
-   :members:
+.. class:: Noodle
+   :members: eat, slurp
    :inherited-members:
    :member-order: bysource
+
+   .. method:: boil(time=10)
+      Boil the noodle *time* minutes.
