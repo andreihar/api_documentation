@@ -3,9 +3,11 @@ API
 
 I write something new
 
-.. autoclass:: spamfilter.Spamfilter
+.. py:function:: get_point_coordinates(self) function:
 
-.. autosummary::
-   :toctree: generated
+   Return a list of random ingredients as strings.
 
-   lumache
+   :param kind: Optional "kind" of ingredients.
+   :type kind: list[str] or None
+   :return: The ingredients list.
+   :rtype: list[str]
