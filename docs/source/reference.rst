@@ -28,6 +28,12 @@ For example:
 
 
 
+Channel
+=======
+.. automodule:: pika.channel
+
+Channel
+-------
 .. autoclass:: Channel
    :members:
    :inherited-members:
