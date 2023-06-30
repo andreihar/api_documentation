@@ -33,10 +33,7 @@ Channel
 
 Channel
 -------
-.. class:: Noodle
+.. class:: lumache.InvalidKindError
    :members: eat, slurp
    :inherited-members:
    :member-order: bysource
-
-   .. method:: boil(time=10)
-      Boil the noodle *time* minutes.
