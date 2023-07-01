@@ -8,15 +8,15 @@ To use GeoPro, first install it using easy_install or pip:
 
 .. code-block:: console
 
-   (.venv) $ pip install geopro
+   $ pip install geopro
 
 .. code-block:: console
 
-   (.venv) $ easy_install geopro
+   $ easy_install geopro
 
 Run "python setup.py install" in the root directory to install it from source.
 
-GPX to map data
+GPX to Map data
 ----------------
 
 To convert the data from a GPX file to a data structure that can be used by online map services,

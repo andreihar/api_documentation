@@ -23,10 +23,10 @@ The Point class defines 2D or 3D geographic points. It allows the developers to 
 
    .. py:method:: get_point_coordinates():
 
-      Return a list of coordinates of the geographic point.
+      Returns a list of coordinates of the geographic point.
 
       :return: Coordinates of the geographic point.
-      :type return: list
+      :rtype: list
 
       >>> point2d = Point(51.5072, -0.1276)
       >>> point2d.get_point_coordinates()
@@ -39,14 +39,16 @@ The Point class defines 2D or 3D geographic points. It allows the developers to 
 
    .. py:method:: convert_point_dimension(elevation):
 
-      Converts a 3D point to a 2D if elevation is set to None.
+      Convert a 3D point to a 2D if elevation is set to None.
 
-      Converts a 2D point to a 3D if elevation is set to integer.
+      Convert a 2D point to a 3D if elevation is set to integer.
+
+      Returns the converted instance of the Point class.
 
       :param elevation: elevation value of the point coordinates.
       :type elevation: int or None
       :return: modified geographic point
-      :type return: Point
+      :rtype: Point
 
       >>> point2d = Point(51.5072, -0.1276)
       >>> point2d.get_point_coordinates()
@@ -63,14 +65,14 @@ The Point class defines 2D or 3D geographic points. It allows the developers to 
    
    .. py:method:: compare_distance(point):
 
-      Compares and returns the difference between two geographic points.
+      Compare and return the difference between two geographic points. Distance is given as an absolute value, thus order doesn't matter.
 
-      When comparing 2D with a 3D point, the 3D point will be converted to a 2d point.
+      When comparing 2D point with a 3D point, the 3D point will be treated as a 2D point.
 
-      :param point: elevation value of the point coordinates.
+      :param point: geographic point that's compared with.
       :type point: Point
       :return: distance between two points
-      :type return: float
+      :rtype: float
 
       >>> point1 = Point(51.5072, -0.1276)
       >>> point2 = Point(51.7311, -0.6287)
@@ -104,15 +106,38 @@ Works for both 2D and 3D geographic points.
    :type points: list[Point]
 
 
+   .. py:method:: get_polygon_points():
+
+      Returns the points that were used to define the Polygon.
+
+      :return: points that were used to define the Polygon.
+      :rtype: list[Point]
+
+      >>> points = [
+         Point(51.73111, -0.62872),
+         Point(51.74472, 0.38751),
+         Point(51.20069, -0.74408),
+         Point(51.20413, 0.49738)
+      ]
+      >>> polygon = Polygon(points)
+      >>> polygon.get_polygon_points()
+      [
+         Point(51.73111, -0.62872),
+         Point(51.74472, 0.38751),
+         Point(51.20069, -0.74408),
+         Point(51.20413, 0.49738)
+      ]
+
+
    .. py:method:: is_point_inside(point):
 
       Checks if the given point located within the polygon.
       If polygon is defined with 2D points, the input point will be converted to a 2D geographic point.
 
-      :param point: Optional "kind" of ingredients.
+      :param point: point that's being checked.
       :type point: Point
       :return: True if point within defined polygon. False otherwise.
-      :type return: bool
+      :rtype: bool
 
       >>> points2d = [
          Point(51.73111, -0.62872),
@@ -152,6 +177,25 @@ Works for both 2D and 3D geographic points.
    :type points: list[Point]
 
 
+   .. py:method:: get_track_points():
+
+      Returns the points that were used to define the Track.
+
+      :return: points that were used to define the Track.
+      :rtype: list[Point]
+
+      >>> points = [
+         Point(51.73111, -0.62872),
+         Point(51.73111, 0.38751)
+      ]
+      >>> track = Track(points)
+      >>> track.get_track_points()
+      [
+         Point(51.73111, -0.62872),
+         Point(51.73111, 0.38751)
+      ]
+
+
    .. py:method:: is_point_on_track(point, error_diameter=0):
 
       Checks if the given point located within the track path.
@@ -159,12 +203,12 @@ Works for both 2D and 3D geographic points.
 
       By default checks if the point is exactly on the track path. Can be made less strict by specifying the diameter around the track where the point can be located.
 
-      :param point: Optional diameter around the track path where the point can be located. .
+      :param point: point that's being checked.
       :type point: Point
       :param error_diameter: Optional diameter value around the track path where the point can be located. Specified in degrees just like latitude and longitude.
       :type error_diameter: float
       :return: True if point within defined path. False otherwise.
-      :type return: bool
+      :rtype: bool
 
       >>> points = [
          Point(51.73111, -0.62872),
@@ -182,23 +226,22 @@ Works for both 2D and 3D geographic points.
 
    .. py:method:: complete_path():
 
-      asd
+      Complete the path that was defined by points in the constructor by filling in missing points.
+      Improves the quality of the path when it is imported to the map application.
 
       :return: filled in gaps of the track
-      :type return: list[Point]
+      :rtype: list[Point]
 
       >>> points = [
          Point(51.73111, -0.62872),
          Point(51.73111, 0.38751)
       ]
+      >>> len(points)
+      2
       >>> track = Track(points)
-      >>> point = Point(51.73000, 0.00000)
-      >>> track.is_point_on_track(point)
-      False
-      >>>
-      >>> track_with_error = Track(points, 0.01)
-      >>> track_with_error.is_point_on_track(point)
-      True
+      >>> track_completed = track.complete_path()
+      >>> len(track_completed)
+      155
 
 
 Mapper
@@ -218,9 +261,9 @@ Works for both 2D and 3D geographic points.
 
       Converts an input to an output file that can be used for map applications.
 
-      :param input: Optional diameter around the track path where the point can be located. .
+      :param input: data that will be saved in a map file. Can be any of the GeoPro data structures.
       :type input: Point, Polygon, Track
-      :param output_file: Optional diameter value around the track path where the point can be located. Specified in degrees just like latitude and longitude.
+      :param output_file: file to where the data will be saved. Can be defined as a string with a path to the file, or as a variable with an opened file.
       :type output_file: string, TextIOWrapper
 
       >>> points = [
@@ -238,9 +281,9 @@ Works for both 2D and 3D geographic points.
 
       Reads the specified GPX file and stores it in the given data structure. 
 
-      :param gpx_file: Optional diameter around the track path where the point can be located.
+      :param gpx_file: specifies the GPX file which will be loaded. Can be defined as a path to the file, or as a variable which has the file opened.
       :type gpx_file: string, TextIOWrapper
-      :return: returns the data stored in the data structure that GeoPro automatically detected.
+      :return: the data stored in the data structure that GeoPro automatically detected.
       :rtype: Point, Polygon, Track
 
       >>> mapper = Mapper()
