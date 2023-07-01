@@ -8,6 +8,9 @@ and offers a *simple* and *intuitive* API.
 
 :doc:`tutorial` is a nice place to start if you have never coded with GeoPro before.
 
+:doc:`reference` will be useful to developers to refresh their memory on what each method of GeoPro library does.
+
+
 Contents
 --------
 
