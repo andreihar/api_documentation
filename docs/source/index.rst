@@ -16,3 +16,4 @@ Contents
 
    usage
    reference
+   acknowledgement
