@@ -45,7 +45,7 @@ Point class, the developer can find two points that are farthest apart in the li
 [51.20069, -0.74408]
 
 
-Get Wikipedia articles based on location
+Sort information based on location
 ----------------
 
 By using GeoPro, developers can check weather any computer information that includes geographic point data
