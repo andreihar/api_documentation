@@ -241,7 +241,7 @@ Works for both 2D and 3D geographic points.
       :param gpx_file: Optional diameter around the track path where the point can be located.
       :type gpx_file: string, TextIOWrapper
       :return: returns the data stored in the data structure that GeoPro automatically detected.
-      :type return: Point, Polygon, Track
+      :rtype: Point, Polygon, Track
 
       >>> mapper = Mapper()
       >>> mapper.load_gpx('data/map_info.gpx')
