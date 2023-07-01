@@ -33,3 +33,11 @@ html_theme = 'sphinx_rtd_theme'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
+
+from sphinx.builders.html import StandaloneHTMLBuilder
+
+class ReadtheDocsBuilderLocalMedia(StandaloneHTMLBuilder):
+    name = "readthedocssinglehtmllocalmedia"
+
+def setup(app):
+    app.add_builder(ReadtheDocsBuilderLocalMedia, override=True)
