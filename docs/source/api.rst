@@ -36,6 +36,17 @@ The Point class defines 2D or 3D geographic points. It allows the developers to 
       >>> point3d.get_point_coordinates()
       [51.5072, -0.1276, 25]
 
+   .. py:method:: convert_point_dimension(elevation):
+
+      Converts a 3D point to a 2D if elevation is set to None.
+
+      Converts a 2D point to a 3D if elevation is set to integer.
+
+      :param elevation: elevation value of the point coordinates.
+      :type kind: int or None
+      :return: modified geographic point
+      :type return: Point
+
 
 Polygon
 ------------
@@ -63,25 +74,25 @@ Works for both 2D and 3D geographic points.
       :return: True if point within defined polygon. False otherwise.
       :type return: bool
 
-      >>> london_points2d = [
+      >>> points2d = [
          Point(51.73111, -0.62872),
          Point(51.74472, 0.38751),
          Point(51.20069, -0.74408),
          Point(51.20413, 0.49738)
       ]
-      >>> london_polygon2d = Polygon(london_points2d)
+      >>> polygon2d = Polygon(points2d)
       >>> point3d = Point(51.5072, -0.1276, 25)
-      >>> london_polygon2d.is_point_inside(point3d)
+      >>> polygon2d.is_point_inside(point3d)
       True
       >>> 
-      >>> london_points3d = [
+      >>> points3d = [
          Point(51.73111, -0.62872, 1),
          Point(51.74472, 0.38751, 1),
          Point(51.20069, -0.74408, 0),
          Point(51.20413, 0.49738, 0)
       ]
-      >>> london_polygon3d = Polygon(london_points3d)
-      >>> london_polygon3d.is_point_inside(point3d)
+      >>> polygon3d = Polygon(points3d)
+      >>> polygon3d.is_point_inside(point3d)
       False
 
 
@@ -107,21 +118,85 @@ Works for both 2D and 3D geographic points.
 
       By default checks if the point is exactly on the track path. Can be made less strict by specifying the diameter around the track where the point can be located.
 
-      :param error_diameter: Optional diameter around the track path where the point can be located. .
+      :param point: Optional diameter around the track path where the point can be located. .
       :type kind: Point
       :param error_diameter: Optional diameter value around the track path where the point can be located. Specified in degrees just like latitude and longitude.
       :type kind: float
       :return: True if point within defined path. False otherwise.
       :type return: bool
 
-      >>> london_points2d = [
+      >>> points = [
          Point(51.73111, -0.62872),
          Point(51.73111, 0.38751)
       ]
-      >>> track = Track(london_points2d)
+      >>> track = Track(points)
       >>> point = Point(51.73000, 0.00000)
       >>> track.is_point_on_track(point)
       False
-      >>> track_with_error = Track(london_points2d, 0.01)
+      >>>
+      >>> track_with_error = Track(points, 0.01)
+      >>> track_with_error.is_point_on_track(point)
+      True
+
+   .. py:method:: complete_path():
+
+      
+
+      :return: filled in gaps of the track
+      :type return: list[Point]
+
+      >>> points = [
+         Point(51.73111, -0.62872),
+         Point(51.73111, 0.38751)
+      ]
+      >>> track = Track(points)
+      >>> point = Point(51.73000, 0.00000)
+      >>> track.is_point_on_track(point)
+      False
+      >>>
+      >>> track_with_error = Track(points, 0.01)
+      >>> track_with_error.is_point_on_track(point)
+      True
+
+
+Mapper
+------------
+
+The Mapper class adds functionality for a geographic track, that can be specified by using a collection of Point instances.
+Works for both 2D and 3D geographic points.
+
+.. py:class:: Mapper(map):
+
+   Instantiates a geographic track object. Requires the list of point to have at least 2 points.
+
+   Throws BadTrackException if it is impossible to define a polygon with given points.
+
+   :param map: map information that will be used for the locations.
+   :type latitude: list[Point]
+
+   .. py:method:: is_point_on_track(point, error_diameter=0):
+
+      Checks if the given point located within the track path.
+      If polygon is defined with 2D points, the input point will be converted to a 2D geographic point.
+
+      By default checks if the point is exactly on the track path. Can be made less strict by specifying the diameter around the track where the point can be located.
+
+      :param point: Optional diameter around the track path where the point can be located. .
+      :type kind: Point
+      :param error_diameter: Optional diameter value around the track path where the point can be located. Specified in degrees just like latitude and longitude.
+      :type kind: float
+      :return: True if point within defined path. False otherwise.
+      :type return: bool
+
+      >>> points = [
+         Point(51.73111, -0.62872),
+         Point(51.73111, 0.38751)
+      ]
+      >>> track = Track(points)
+      >>> point = Point(51.73000, 0.00000)
+      >>> track.is_point_on_track(point)
+      False
+      >>>
+      >>> track_with_error = Track(points, 0.01)
       >>> track_with_error.is_point_on_track(point)
       True
