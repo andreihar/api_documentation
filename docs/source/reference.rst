@@ -249,6 +249,6 @@ Works for both 2D and 3D geographic points.
          Point(51.73111, -0.62872),
          Point(51.73111, 0.38751)
       ]
-      >>> gpx_file = open('data/map_info2', 'r')
+      >>> gpx_file = open('data/map_info2.gpx', 'r')
       >>> mapper.load_gpx(gpx_file)
       Point(51.5072, -0.1276, 25)

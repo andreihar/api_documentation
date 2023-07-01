@@ -1,19 +1,18 @@
-Welcome to Lumache's documentation!
+Welcome to GeoPro documentation!
 ===================================
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
+**GeoPro** is a Python library for basic Geographic Information Systems (GIS) operations. 
+
+It includes all necessary methods the developers need to use when working with GIS 
 and offers a *simple* and *intuitive* API.
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+:doc:`tutorial` is a nice place to start if you have never coded with GeoPro before.
 
 Contents
 --------
 
 .. toctree::
 
-   usage
+   tutorial
    reference
    acknowledgement
