@@ -1,4 +1,4 @@
-API
+Reference
 ===
 
 Point
@@ -36,6 +36,7 @@ The Point class defines 2D or 3D geographic points. It allows the developers to 
       >>> point3d.get_point_coordinates()
       [51.5072, -0.1276, 25]
 
+
    .. py:method:: convert_point_dimension(elevation):
 
       Converts a 3D point to a 2D if elevation is set to None.
@@ -46,6 +47,45 @@ The Point class defines 2D or 3D geographic points. It allows the developers to 
       :type kind: int or None
       :return: modified geographic point
       :type return: Point
+
+      >>> point2d = Point(51.5072, -0.1276)
+      >>> point2d.get_point_coordinates()
+      [51.5072, -0.1276]
+      >>> 
+      >>> point3d = point2d.convert_point_dimension(25)
+      >>> point3d.get_point_coordinates()
+      [51.5072, -0.1276, 25]
+      >>>
+      >>> point2d2 = point3d.convert_point_dimension(None)
+      >>> point2d2.get_point_coordinates()
+      [51.5072, -0.1276]
+
+   
+   .. py:method:: compare_distance(point):
+
+      Compares and returns the difference between two geographic points.
+
+      When comparing 2D with a 3D point, the 3D point will be converted to a 2d point.
+
+      :param point: elevation value of the point coordinates.
+      :type kind: Point
+      :return: distance between two points
+      :type return: float
+
+      >>> point1 = Point(51.5072, -0.1276)
+      >>> point2 = Point(51.7311, -0.6287)
+      >>> point1.compare_distance(point2)
+      0.548846
+      >>> 
+      >>> point1 = Point(51.5072, -0.1276, 17)
+      >>> point2 = Point(51.7311, -0.6287, 10)
+      >>> point1.compare_distance(point2)
+      7.021484
+      >>>
+      >>> point1 = Point(51.5072, -0.1276)
+      >>> point2 = Point(51.7311, -0.6287, 10)
+      >>> point1.compare_distance(point2)
+      0.548846
 
 
 Polygon
@@ -111,6 +151,7 @@ Works for both 2D and 3D geographic points.
    :param points: points that define a geographic track.
    :type latitude: list[Point]
 
+
    .. py:method:: is_point_on_track(point, error_diameter=0):
 
       Checks if the given point located within the track path.
@@ -138,9 +179,10 @@ Works for both 2D and 3D geographic points.
       >>> track_with_error.is_point_on_track(point)
       True
 
+
    .. py:method:: complete_path():
 
-      
+      asd
 
       :return: filled in gaps of the track
       :type return: list[Point]
@@ -173,6 +215,7 @@ Works for both 2D and 3D geographic points.
 
    :param map: map information that will be used for the locations.
    :type latitude: list[Point]
+
 
    .. py:method:: is_point_on_track(point, error_diameter=0):
 
