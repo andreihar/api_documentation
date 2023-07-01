@@ -106,7 +106,7 @@ Works for both 2D and 3D geographic points.
    :type points: list[Point]
 
 
-   .. py:method:: get_polygon_points():
+   .. py:method:: get_points():
 
       Returns the points that were used to define the Polygon.
 
@@ -120,7 +120,7 @@ Works for both 2D and 3D geographic points.
          Point(51.20413, 0.49738)
       ]
       >>> polygon = Polygon(points)
-      >>> polygon.get_polygon_points()
+      >>> polygon.get_points()
       [
          Point(51.73111, -0.62872),
          Point(51.74472, 0.38751),
@@ -177,7 +177,7 @@ Works for both 2D and 3D geographic points.
    :type points: list[Point]
 
 
-   .. py:method:: get_track_points():
+   .. py:method:: get_points():
 
       Returns the points that were used to define the Track.
 
@@ -189,7 +189,7 @@ Works for both 2D and 3D geographic points.
          Point(51.73111, 0.38751)
       ]
       >>> track = Track(points)
-      >>> track.get_track_points()
+      >>> track.get_points()
       [
          Point(51.73111, -0.62872),
          Point(51.73111, 0.38751)
